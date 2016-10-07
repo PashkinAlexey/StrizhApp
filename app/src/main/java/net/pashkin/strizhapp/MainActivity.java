@@ -3,10 +3,7 @@ package net.pashkin.strizhapp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     final String TAG="myLogs";
