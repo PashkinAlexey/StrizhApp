@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private String lastNoteDate;
     private ArrayList<Map<String, Object>> data;
     String[] from = {"userId", "created", "title", "description" };
-    int[] to = { R.id.textView, R.id.textView2, R.id.textView3, R.id.textView4 };
+    int[] to = { R.id.userName, R.id.created, R.id.title, R.id.description };
     private SimpleAdapter sAdapter;
 
     private int page=1;
