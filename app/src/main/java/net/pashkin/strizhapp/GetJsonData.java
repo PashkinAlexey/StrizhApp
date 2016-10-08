@@ -20,10 +20,12 @@ import java.net.URL;
 public class GetJsonData {
     final String TAG="myLogs";
     private MainActivity mainActivity;
-    public void getJSONFromUrl(MainActivity activ, String url, String cookie){
+    public GetJsonData(MainActivity activ){
         mainActivity=activ;
+    }
+    public void getJSONFromUrl(String authURL, String cookie){
         Async myTask=new Async();
-        myTask.execute(url, cookie);
+        myTask.execute(authURL, cookie);
     }
 
     private class Async extends AsyncTask<Object, Void, JSONObject>
@@ -75,6 +77,12 @@ public class GetJsonData {
         protected void onPostExecute (JSONObject jsonObject){
             if (jsonObject != null) {
                 Log.d(TAG, "Json: " + jsonObject.toString());
+                mainActivity.setJson(jsonObject);
+                try {
+                    mainActivity.adapterCreator();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
