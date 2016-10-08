@@ -1,6 +1,5 @@
 package net.pashkin.strizhapp;
 
-import android.net.sip.SipErrorCode;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -25,11 +24,12 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     final String TAG="myLogs";
     private String cookie=null;
-    private String firstGetURL="https://strizhapp.ru/api/post?page_size=10&page=";
-    private String secondGetURL="&filters[feed]=true&conditions[user_id][<>]=1&order[created_at]=desc";
+    private String preGetURL="https://strizhapp.ru/api/post?filters[feed]=true&conditions[user_id][<>]=1&order[created_at]=desc&page_size=10&page=";
+    private String dateURL="&conditions[created_at][<]=";
     private String loginUrl="https://strizhapp.ru/api/auth";
     private JSONObject jObj;
     private boolean loading=false;
+    private String lastNoteDate;
     private ArrayList<Map<String, Object>> data;
     String[] from = {"userId", "created", "title", "description" };
     int[] to = { R.id.textView, R.id.textView2, R.id.textView3, R.id.textView4 };
@@ -50,7 +50,12 @@ public class MainActivity extends AppCompatActivity {
         if (!loading) {
             loading=true;
             GetJsonData getJson = new GetJsonData(this);
-            String getURL = firstGetURL + page + secondGetURL;
+            if (page==1) {
+                Long curentDate = System.currentTimeMillis();
+                DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+                lastNoteDate = outputFormat.format(curentDate);
+            }
+            String getURL = preGetURL+page+dateURL+lastNoteDate;
             Log.d(TAG, "URL: " + getURL);
             getJson.getJSONFromUrl(getURL, cookie);
         }
@@ -64,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         Map<String, Object> m;
         objects = jObj.getJSONObject("data").getJSONArray("post");
         String userId,title,description,created="";
-        Long currTime;
         //Парсинг данных о каждом транспорте
         for (int i=0; i<objects.length(); i++){
             m = new HashMap<String, Object>();

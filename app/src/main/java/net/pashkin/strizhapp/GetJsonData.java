@@ -76,7 +76,7 @@ public class GetJsonData {
         @Override
         protected void onPostExecute (JSONObject jsonObject){
             if (jsonObject != null) {
-                Log.d(TAG, "Json: " + jsonObject.toString());
+                //Log.d(TAG, "Json: " + jsonObject.toString());
                 mainActivity.setJson(jsonObject);
                 try {
                     mainActivity.adapterCreator();
