@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private String dateURL="&conditions[created_at][<]=";
     private String loginUrl="https://strizhapp.ru/api/auth";
     private JSONObject jObj;
+    private SendLoginData login;
     private boolean loading=false;
     private String lastNoteDate;
     private ArrayList<Map<String, Object>> data;
@@ -46,9 +47,14 @@ public class MainActivity extends AppCompatActivity {
         jObj=jsonObject;
     }
 
+    public void setLoading(Boolean state){
+        loading=state;
+    }
+
+
     public void getJson(){
         if (!loading) {
-            loading=true;
+            setLoading(true);
             GetJsonData getJson = new GetJsonData(this);
             if (page==1) {
                 Long curentDate = System.currentTimeMillis();
@@ -56,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 lastNoteDate = outputFormat.format(curentDate);
             }
             String getURL = preGetURL+page+dateURL+lastNoteDate;
-            Log.d(TAG, "URL: " + getURL);
+            //Log.d(TAG, "URL: " + getURL);
             getJson.getJSONFromUrl(getURL, cookie);
         }
     }
@@ -87,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
                 Date date = inputFormat.parse(inputDateStr);
                 created=outputFormat.format(date);
             } catch (ParseException e) {
-                e.printStackTrace();
                 created=inputDateStr;
                 Toast toast = Toast.makeText(this,"Ошибка даты", Toast.LENGTH_SHORT);
                 toast.show();
@@ -97,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             m.put("title", title);
             m.put("description", description);
             data.add(m);
-            loading=false;
+            setLoading(false);
         }
 
         if (page==1) {
@@ -116,6 +121,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         lvMain=(ListView) findViewById(R.id.lvMain);
         final SwipeRefreshLayout swipeRefresh=(SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
+        login=new SendLoginData(this);
+        login.sendDataWithPost(loginUrl);
+
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                page=1;
+                if (cookie==null){
+                    login.sendDataWithPost(loginUrl);
+                }
+                else {
+                    getJson();
+                }
+                swipeRefresh.setRefreshing(false);
+            }
+        });
+
         lvMain.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -127,18 +149,6 @@ public class MainActivity extends AppCompatActivity {
                 if ((firstVisibleItem+visibleItemCount==totalItemCount)&(totalItemCount>0)){
                         getJson();
                 }
-            }
-        });
-
-        SendLoginData login=new SendLoginData();
-        login.sendDataWithPost(this, loginUrl);
-
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                page=1;
-                getJson();
-                swipeRefresh.setRefreshing(false);
             }
         });
     }

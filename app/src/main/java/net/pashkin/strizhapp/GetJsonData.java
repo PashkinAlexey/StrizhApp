@@ -2,6 +2,7 @@ package net.pashkin.strizhapp;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,9 +67,9 @@ public class GetJsonData {
                 str = buffer.toString();
                 jsonObject = new JSONObject(str);
             } catch (IOException e) {
-                Log.d(TAG, "Ошибка загрузки");
+                Log.d(TAG, "Ошибка загрузки Json");
             } catch (JSONException e) {
-                Log.d(TAG, "Ошибка данных");
+                Log.d(TAG, "Ошибка чтения Json");
             }
             return jsonObject;
         }
@@ -76,13 +77,20 @@ public class GetJsonData {
         @Override
         protected void onPostExecute (JSONObject jsonObject){
             if (jsonObject != null) {
-                //Log.d(TAG, "Json: " + jsonObject.toString());
                 mainActivity.setJson(jsonObject);
                 try {
                     mainActivity.adapterCreator();
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Toast toast = Toast.makeText(mainActivity,"Ошибка данных. Попробуйте обновить страницу", Toast.LENGTH_SHORT);
+                    toast.show();
+                    Log.d(TAG, "Ошибка при создании адаптера");
+                    mainActivity.setLoading(false);
                 }
+            }
+            else {
+                mainActivity.setLoading(false);
+                Toast toast = Toast.makeText(mainActivity,"Ошибка загрузки. Проверьте подключение к интернету", Toast.LENGTH_SHORT);
+                toast.show();
             }
         }
     }

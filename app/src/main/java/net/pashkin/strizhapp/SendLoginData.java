@@ -2,6 +2,7 @@ package net.pashkin.strizhapp;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -18,8 +19,10 @@ import java.net.URL;
 public class SendLoginData{
     final String TAG = "myLogs";
     private MainActivity mainActivity;
-    public void sendDataWithPost(MainActivity activ, String url){
+    public SendLoginData(MainActivity activ){
         mainActivity = activ;
+    }
+    public void sendDataWithPost(String url){
         Async myTask=new Async();
         myTask.execute(url);
     }
@@ -78,11 +81,10 @@ public class SendLoginData{
                 while ((line = reader.readLine()) != null) {
                     buffer.append(line);
                 }*/
-
                 resultString = conn.getHeaderField("Set-Cookie");
                 //}
             } catch (IOException e) {
-                Log.d(TAG, "Ошибка авторизации:");
+                Log.d(TAG, "Ошибка авторизации");
             }
             return resultString;
         }
@@ -90,9 +92,13 @@ public class SendLoginData{
             @Override
             protected void onPostExecute (String resultString){
             if (resultString != null) {
-                Log.d(TAG, "Результат: " + resultString);
+                //Log.d(TAG, "Результат: " + resultString);
                 mainActivity.setCookie(resultString);
                 mainActivity.getJson();
+            }
+            else {
+                Toast toast = Toast.makeText(mainActivity,"Ошибка авторизации. Проверьте подключение к интернету", Toast.LENGTH_SHORT);
+                toast.show();
             }
         }
     }
