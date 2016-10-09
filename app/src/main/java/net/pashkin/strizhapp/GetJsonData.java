@@ -89,8 +89,8 @@ public class GetJsonData {
             }
             else {
                 mainActivity.setLoading(false);
-                Toast toast = Toast.makeText(mainActivity,"Ошибка загрузки. Проверьте подключение к интернету", Toast.LENGTH_SHORT);
-                toast.show();
+                /*Toast toast = Toast.makeText(mainActivity,"Ошибка загрузки. Проверьте подключение к интернету", Toast.LENGTH_SHORT);
+                toast.show();*/
             }
         }
     }
