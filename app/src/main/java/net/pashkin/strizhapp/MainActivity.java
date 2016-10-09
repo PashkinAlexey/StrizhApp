@@ -2,8 +2,10 @@ package net.pashkin.strizhapp;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -119,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         lvMain=(ListView) findViewById(R.id.lvMain);
         final SwipeRefreshLayout swipeRefresh=(SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
         login=new SendLoginData(this);
