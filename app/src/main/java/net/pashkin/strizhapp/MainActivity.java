@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
             m.put("title", title);
             m.put("description", description);
             data.add(m);
-            setLoading(false);
         }
 
         if (page==1) {
@@ -113,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
             sAdapter.notifyDataSetChanged();
         }
         page++;
+        setLoading(false);
     }
 
     @Override

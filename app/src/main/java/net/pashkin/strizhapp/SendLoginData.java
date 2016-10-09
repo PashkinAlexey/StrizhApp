@@ -66,8 +66,8 @@ public class SendLoginData{
 
                 conn.connect();
 
-                int responseCode = conn.getResponseCode();
-                Log.d(TAG, Integer.toString(responseCode));
+                //int responseCode = conn.getResponseCode();
+                //Log.d(TAG, Integer.toString(responseCode));
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
