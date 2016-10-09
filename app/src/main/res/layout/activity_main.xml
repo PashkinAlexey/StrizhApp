@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/swipeRefresh"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/background_2x"
     tools:context="net.pashkin.strizhapp.MainActivity">
 
@@ -12,6 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
-        android:dividerHeight="10dp"
+        android:dividerHeight="0dp"
         android:id="@+id/lvMain"/>
 </android.support.v4.widget.SwipeRefreshLayout>
