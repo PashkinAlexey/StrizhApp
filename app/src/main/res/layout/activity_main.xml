@@ -18,6 +18,7 @@
             android:layout_height="match_parent"
             android:divider="@null"
             android:dividerHeight="0dp"
+            android:paddingBottom="2dp"
             android:id="@+id/lvMain"/>
     </android.support.v4.widget.SwipeRefreshLayout>
     <LinearLayout
@@ -36,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
+                android:paddingBottom="2dp"
                 app:srcCompat="@drawable/tab1_3x"
                 android:id="@+id/button1"/>
             <TextView
@@ -56,6 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
+                android:paddingBottom="2dp"
                 app:srcCompat="@drawable/tab2_3x"
                 android:id="@+id/button2"/>
             <TextView
@@ -88,6 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
+                android:paddingBottom="2dp"
                 app:srcCompat="@drawable/tab4_3x"
                 android:id="@+id/button3"/>
             <TextView
@@ -108,6 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
+                android:paddingBottom="2dp"
                 app:srcCompat="@drawable/tab5_2x"
                 android:id="@+id/button4"/>
             <TextView
