@@ -1,16 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/swipeRefresh"
-    android:background="@drawable/background_2x"
-    tools:context="net.pashkin.strizhapp.MainActivity">
-
-    <ListView
+    android:layout_height="match_parent">
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:id="@+id/lvMain"/>
-</android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:id="@+id/swipeRefresh"
+        android:background="@drawable/background_2x"
+        tools:context="net.pashkin.strizhapp.MainActivity">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:id="@+id/lvMain"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="7dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                app:srcCompat="@drawable/tab1_3x"
+                android:id="@+id/button1"/>
+            <TextView
+                android:text="Лента"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:layout_weight="1"
+                android:id="@+id/textBut1" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                app:srcCompat="@drawable/tab2_3x"
+                android:id="@+id/button2"/>
+            <TextView
+                android:text="Контакты"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:layout_weight="1"
+                android:id="@+id/textBut2" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                app:srcCompat="@drawable/center_tab"
+                android:id="@+id/addButton"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                app:srcCompat="@drawable/tab4_3x"
+                android:id="@+id/button3"/>
+            <TextView
+                android:text="Диалоги"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:layout_weight="1"
+                android:id="@+id/textBut3" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                app:srcCompat="@drawable/tab5_2x"
+                android:id="@+id/button4"/>
+            <TextView
+                android:text="Кабинет"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal"
+                android:textSize="12sp"
+                android:layout_weight="1"
+                android:id="@+id/textBut4" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
